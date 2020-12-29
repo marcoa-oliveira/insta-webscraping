@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Insta-webscraping</title>
+</head>
+<body>
+    <div class="container"></div>
+
+    <script>
+        (async() => {
+            //abrir arquivos com dados (json)
+            const response = await fetch('./instagram.json')
+            const data = await response.json()
+
+            //formatar dados para enviar ao html
+            const htmlList = data
+                .map(({src}) => `<li><img src="${src}"></li>`)
+                .join('')
+            
+            //colocar no html
+            document.querySelector('.container').innerHTML = htmlList
+
+        })()
+    </script>
+</body>
+</html>
